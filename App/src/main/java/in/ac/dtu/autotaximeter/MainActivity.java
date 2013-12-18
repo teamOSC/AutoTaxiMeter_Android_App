@@ -1,23 +1,14 @@
 package in.ac.dtu.autotaximeter;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
 
 import in.ac.dtu.autotaximeter.Fragments.ConvertFareFragment;
 import in.ac.dtu.autotaximeter.Fragments.FindFareFragment;
@@ -35,6 +26,8 @@ public class MainActivity extends ActionBarActivity
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
+
+    private static final String TAG = "MAIN_ACTIVITY";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,14 +47,17 @@ public class MainActivity extends ActionBarActivity
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
-        FragmentManager fragmentManager = getSupportFragmentManager();
-
+        
         switch(position) {
-            case 0 : fragmentManager.beginTransaction().replace(R.id.container, ConvertFareFragment.newInstance(position + 1)).commit();
+
+            case 0 :
+                getSupportFragmentManager().beginTransaction().replace(R.id.container, ConvertFareFragment.newInstance(position + 1)).commit();
                 break;
-            case 1 : fragmentManager.beginTransaction().replace(R.id.container, TrackFragment.newInstance(position + 1)).commit();
+            case 1 :
+                getSupportFragmentManager().beginTransaction().replace(R.id.container, TrackFragment.newInstance(position + 1)).commit();
                 break;
-            case 2 : fragmentManager.beginTransaction().replace(R.id.container, FindFareFragment.newInstance(position + 1)).commit();
+            case 2 :
+                getSupportFragmentManager().beginTransaction().replace(R.id.container, FindFareFragment.newInstance(position + 1)).commit();
                 break;
 
         }
@@ -71,13 +67,13 @@ public class MainActivity extends ActionBarActivity
     public void onSectionAttached(int number) {
         switch (number) {
             case 1:
-                mTitle = getString(R.string.title_section1);
+                mTitle = "Convert Fare";
                 break;
             case 2:
-                mTitle = getString(R.string.title_section2);
+                mTitle = "Realtime Track";
                 break;
             case 3:
-                mTitle = getString(R.string.title_section3);
+                mTitle = "Find Fare";
                 break;
         }
     }

@@ -29,8 +29,8 @@ public class TrackFragment extends Fragment {
      * Returns a new instance of this fragment for the given section
      * number.
      */
-    public static ConvertFareFragment newInstance(int sectionNumber) {
-        ConvertFareFragment fragment = new ConvertFareFragment();
+    public static TrackFragment newInstance(int sectionNumber) {
+        TrackFragment fragment = new TrackFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);
@@ -40,9 +40,7 @@ public class TrackFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-        TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-        textView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
+        View rootView = inflater.inflate(R.layout.fragment_track, container, false);
         return rootView;
     }
 
