@@ -24,11 +24,11 @@ import java.util.Locale;
 
 public class MainActivity
         extends
-            ActionBarActivity
+        ActionBarActivity
         implements
-            ActionBar.TabListener,
-            ConvertFragment.OnFragmentInteractionListener,
-            MeterFragment.OnFragmentInteractionListener {
+        ActionBar.TabListener,
+        ConvertFragment.OnFragmentInteractionListener,
+        MeterFragment.OnFragmentInteractionListener {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -90,7 +90,7 @@ public class MainActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        
+
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
@@ -202,7 +202,7 @@ public class MainActivity
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
+                                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             TextView textView = (TextView) rootView.findViewById(R.id.section_label);
             textView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));

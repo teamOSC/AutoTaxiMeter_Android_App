@@ -18,7 +18,6 @@ import com.teamosc.autotaximeter.R;
  * to handle interaction events.
  * Use the {@link MeterFragment#newInstance} factory method to
  * create an instance of this fragment.
- *
  */
 public class MeterFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
@@ -41,6 +40,7 @@ public class MeterFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
+
     public MeterFragment() {
         // Required empty public constructor
     }
@@ -86,7 +86,7 @@ public class MeterFragment extends Fragment {
      * fragment to allow an interaction in this fragment to be communicated
      * to the activity and potentially other fragments contained in that
      * activity.
-     * <p>
+     * <p/>
      * See the Android Training lesson <a href=
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
