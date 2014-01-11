@@ -2,6 +2,7 @@ package com.teamosc.autotaximeter;
 
 import java.util.Locale;
 
+import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -18,7 +19,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class MainActivity extends ActionBarActivity implements ActionBar.TabListener {
+import com.teamosc.autotaximeter.fragments.ConvertFragment;
+import com.teamosc.autotaximeter.fragments.MeterFragment;
+
+public class MainActivity
+        extends
+            ActionBarActivity
+        implements
+            ActionBar.TabListener,
+            ConvertFragment.OnFragmentInteractionListener,
+            MeterFragment.OnFragmentInteractionListener {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -111,6 +121,11 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
     }
 
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
+
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
@@ -125,13 +140,22 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+            Fragment fragment = new Fragment();
+            switch (position) {
+                case 0:
+                    fragment = ConvertFragment.newInstance(position);
+                    break;
+                case 1:
+                    fragment = MeterFragment.newInstance(position);
+                    break;
+            }
+            return fragment;
         }
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
-            return 3;
+            // Show 2 total pages.
+            return 2;
         }
 
         @Override
@@ -142,8 +166,8 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                     return getString(R.string.title_section1).toUpperCase(l);
                 case 1:
                     return getString(R.string.title_section2).toUpperCase(l);
-                case 2:
-                    return getString(R.string.title_section3).toUpperCase(l);
+                /*case 2:
+                    return getString(R.string.title_section3).toUpperCase(l);*/
             }
             return null;
         }
