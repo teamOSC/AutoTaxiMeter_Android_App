@@ -1,14 +1,18 @@
 package com.teamosc.autotaximeter.fragments;
 
 import android.app.Activity;
+import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import com.teamosc.autotaximeter.R;
+import com.teamosc.autotaximeter.utils.FareData;
 
 
 /**
@@ -20,11 +24,10 @@ import com.teamosc.autotaximeter.R;
  * create an instance of this fragment.
  */
 public class ConvertFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_SECTION_NUMBER = "section_number";
-
     private OnFragmentInteractionListener mListener;
+
+    private static FareData mFareData;
+    private static Context context;
 
     /**
      * Use this factory method to create a new instance of
@@ -33,11 +36,10 @@ public class ConvertFragment extends Fragment {
      * @return A new instance of fragment ConvertFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ConvertFragment newInstance(int sectionNumber) {
+    public static ConvertFragment newInstance(FareData fareData, Context c) {
         ConvertFragment fragment = new ConvertFragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-        fragment.setArguments(args);
+        mFareData = fareData;
+        context = c;
         return fragment;
     }
 
@@ -54,6 +56,16 @@ public class ConvertFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_convert, container, false);
+        if (rootView != null) {
+            Spinner selectorConvert = (Spinner) rootView.findViewById(R.id.selector_convert);
+            String operators[] = mFareData.getOperators();
+            ArrayAdapter<String> opAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, operators);
+            opAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            selectorConvert.setAdapter(opAdapter);
+
+
+            //selectorConvert.setAdapter();
+        }
         return rootView;
     }
 

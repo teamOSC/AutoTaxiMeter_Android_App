@@ -25,6 +25,18 @@ public class FareData {
     private Double[] bookingFee;
     private Double[] waitingCharge;
 
+    public int getLength() {
+        return city.length;
+    }
+
+    public String[] getOperators() {
+        String operators[] = new String[city.length];
+        for (int i = 0; i < city.length; i++) {
+            operators[i] = city[i] + " " + operator[i];
+        }
+        return operators;
+    }
+
 
     public String loadJSONFromAsset(Context context) {
         String json = null;

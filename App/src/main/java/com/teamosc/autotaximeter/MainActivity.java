@@ -30,6 +30,8 @@ public class MainActivity
         ConvertFragment.OnFragmentInteractionListener,
         MeterFragment.OnFragmentInteractionListener {
 
+    private FareData fareData;
+
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -50,7 +52,7 @@ public class MainActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FareData fareData = new FareData(getApplicationContext());
+        fareData = new FareData(getApplicationContext());
 
         // Set up the action bar.
         final ActionBar actionBar = getSupportActionBar();
@@ -145,7 +147,7 @@ public class MainActivity
             Fragment fragment = new Fragment();
             switch (position) {
                 case 0:
-                    fragment = ConvertFragment.newInstance(position);
+                    fragment = ConvertFragment.newInstance(fareData, getApplicationContext());
                     break;
                 case 1:
                     fragment = MeterFragment.newInstance(position);
